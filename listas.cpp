@@ -9,7 +9,6 @@
 
 using namespace std;
 
-
 typedef struct no_ {
     //critério de busca da ordenação
     int chave;
@@ -54,43 +53,8 @@ void encerra_lista(no * ptlista) {
     delete(ptlista);
 }
 
-void busca_fim(no * ptlista, int chave, no ** inicio, no ** fim) {
-    *inicio = ptlista;
-    *fim = NULL;
-    no* ptr = ptlista->prox;
-
-    while (ptr != NULL) {
-        if (ptr->chave == chave) {
-            *fim = ptr;
-            ptr = NULL;
-        } else {
-            *inicio = ptr;
-            ptr = ptr->prox;
-
-        }
-
-    }
-}
-
-int insere_fim(no * ptlista, int chave, int valor) {
-    int retorno = -1;
-    no* ptr = new(no);
-    no* inicio;
-    no* fim;
-
-    busca_fim(ptlista, chave, &inicio, &fim);
-
-    if (fim == NULL) {
-        ptr->chave = chave;
-        ptr->valor = valor;
-        inicio->prox = ptr;
-        retorno = 0;
-    }
-
-    return retorno;
-}
-
-void busca_inicio(no * ptlista, int chave, no ** inicio, no ** pont) {
+void busca_fim(no * ptlista, int chave, no ** fim, no ** pont) {
+    *fim = ptlista;
     *pont = NULL;
     no* ptr = ptlista->prox;
 
@@ -99,11 +63,52 @@ void busca_inicio(no * ptlista, int chave, no ** inicio, no ** pont) {
             *pont = ptr;
             ptr = NULL;
         } else {
+            *fim = ptr;
+            ptr = ptr->prox;
+
+        }
+
+    }
+}
+
+void busca_inicio(no * ptlista, int chave, no ** ant, no ** pont) {
+    *ant = ptlista;
+    *pont = NULL;
+    no* ptr = ptlista->prox;
+
+    while (ptr != NULL) {
+        if (ptr->chave == chave) {
+            *pont = ptr;
+            ptr = NULL;
+        } else {
+            *ant = ptr;
             ptr = ptr->prox;
         }
 
     }
 }
+
+int insere_fim(no * ptlista, int chave, int valor) {
+    int retorno = -1;
+    no* ptr = new(no);
+    no* pont;
+    no* inicio;
+    no* fim = ptlista;
+
+    busca_inicio(ptlista, chave, &fim, &pont);
+
+    if (pont == NULL) {
+        ptr->chave = chave;
+        ptr->valor = valor;
+        fim->prox = ptr;
+        ptr->prox = NULL;
+        retorno = 0;
+    }
+
+    return retorno;
+}
+
+
 
 int insere_inicio(no * ptlista, int chave, int valor) {
     int retorno = -1;
