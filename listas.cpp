@@ -9,6 +9,7 @@
 
 using namespace std;
 
+
 typedef struct no_ {
     //critério de busca da ordenação
     int chave;
