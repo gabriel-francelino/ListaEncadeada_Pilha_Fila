@@ -95,10 +95,12 @@ int insere_fim(no * ptlista, int chave, int valor) {
 int insere_inicio(no * ptlista, int chave, int valor) {
     int retorno = -1;
     no* ptr = new(no);
-    no* inicio = ptlista;
+    no* inicio;
     no* pont;
 
     busca(ptlista, chave, &inicio, &pont);
+    
+    inicio = ptlista;
 
     if (pont == NULL) {
         ptr->chave = chave;
