@@ -53,25 +53,7 @@ void encerra_lista(no * ptlista) {
     delete(ptlista);
 }
 
-void busca_fim(no * ptlista, int chave, no ** fim, no ** pont) {
-    *fim = ptlista;
-    *pont = NULL;
-    no* ptr = ptlista->prox;
-
-    while (ptr != NULL) {
-        if (ptr->chave == chave) {
-            *pont = ptr;
-            ptr = NULL;
-        } else {
-            *fim = ptr;
-            ptr = ptr->prox;
-
-        }
-
-    }
-}
-
-void busca_inicio(no * ptlista, int chave, no ** ant, no ** pont) {
+void busca(no * ptlista, int chave, no ** ant, no ** pont) {
     *ant = ptlista;
     *pont = NULL;
     no* ptr = ptlista->prox;
@@ -95,7 +77,7 @@ int insere_fim(no * ptlista, int chave, int valor) {
     no* inicio;
     no* fim = ptlista;
 
-    busca_inicio(ptlista, chave, &fim, &pont);
+    busca(ptlista, chave, &fim, &pont);
 
     if (pont == NULL) {
         ptr->chave = chave;
@@ -116,7 +98,7 @@ int insere_inicio(no * ptlista, int chave, int valor) {
     no* inicio = ptlista;
     no* pont;
 
-    busca_inicio(ptlista, chave, &inicio, &pont);
+    busca(ptlista, chave, &inicio, &pont);
 
     if (pont == NULL) {
         ptr->chave = chave;
