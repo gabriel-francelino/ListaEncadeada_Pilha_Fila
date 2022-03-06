@@ -90,8 +90,6 @@ int insere_fim(no * ptlista, int chave, int valor) {
     return retorno;
 }
 
-
-
 int insere_inicio(no * ptlista, int chave, int valor) {
     int retorno = -1;
     no* ptr = new(no);
@@ -99,7 +97,7 @@ int insere_inicio(no * ptlista, int chave, int valor) {
     no* pont;
 
     busca(ptlista, chave, &inicio, &pont);
-    
+
     inicio = ptlista;
 
     if (pont == NULL) {
@@ -114,6 +112,48 @@ int insere_inicio(no * ptlista, int chave, int valor) {
 
     return retorno;
 }
+
+no * remove_inicio(no * ptlista) {
+    no* retorno = NULL;
+    no* pont = ptlista->prox;
+
+    if (pont != NULL) {
+        retorno = pont;
+        *pont = *pont->prox;
+    }
+    return retorno;
+}
+
+/*no * remove_fim(no * ptlista) {
+    no* retorno = NULL;
+    no* pont = ptlista;
+
+    while (pont->prox != NULL) {
+        pont = pont->prox;
+    }
+    retorno = pont;
+    //pont = pont->prox;
+    pont->prox = NULL;
+    
+
+    return retorno;
+}*/
+
+
+no * remove_fim(no * ptlista) {
+    no* retorno = NULL;
+    no* pont = ptlista;
+    no* ant;
+    while (pont->prox != NULL) {
+        ant = pont;
+        pont = pont->prox;   
+        retorno = ant;
+    }
+    ant->prox = NULL;
+    
+    return retorno;
+}
+ 
 
 /**
  * Imprime a lista encadeada.
