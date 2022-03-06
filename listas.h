@@ -26,10 +26,11 @@ typedef struct no_ {
 
 no* inicia_lista();
 void encerra_lista(no * ptlista);
-void busca_fim(no * ptlista, int chave, no ** ant, no ** pont);
-void busca_inicio(no * ptlista, int chave, no ** inicio, no ** pont);
+void busca(no * ptlista, int chave, no ** inicio, no ** pont);
 int insere_fim(no * ptlista, int chave, int valor);
 int insere_inicio(no * ptlista, int chave, int valor);
+no * remove_inicio(no * ptlista);
+no * remove_fim(no * ptlista);
 void imprime(no * ptlista);
 
 #endif /* LISTAS_H */
